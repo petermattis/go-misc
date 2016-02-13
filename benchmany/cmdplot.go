@@ -115,7 +115,7 @@ func cmdPlot() {
 		tables = append(tables, table)
 		units = append(units, unit)
 		if unit == "ns/op" {
-			units[len(units)-1] = "op/ns"
+			units[len(units)-1] = "ms/op"
 		}
 
 		subc := c.Filter(BenchKey{Unit: unit})
@@ -163,9 +163,9 @@ func cmdPlot() {
 			}
 			if unit == "ns/op" {
 				j := len(geomeanCol) - 1
-				geomeanCol[j] = 1 / geomeanCol[j]
+				geomeanCol[j] = geomeanCol[j] / 1e6
 				for i := range benchCols {
-					benchCols[i][j] = 1 / benchCols[i][j]
+					benchCols[i][j] = benchCols[i][j] / 1e6
 				}
 			}
 		}

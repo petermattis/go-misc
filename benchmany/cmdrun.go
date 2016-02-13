@@ -308,7 +308,7 @@ func runBenchmark(commit *commitInfo, status *StatusReporter) {
 		commit.count++
 		return
 	}
-	out, err := cmd.CombinedOutput()
+	out, err := cmd.Output()
 	if err == nil {
 		commit.count++
 	} else {
